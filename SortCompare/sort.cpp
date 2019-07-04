@@ -1,6 +1,9 @@
-//问题：MergeSort中什么算是移动/比较 
-//HeapSort中由于初始化堆也算作了移动和比较，所以复杂度会高一点 
-//希尔怎么这么优。。。 
+/*
+6.28 
+最后一次的数据结构实验课作业
+希尔怎么这么优。。。
+快排、归并还有待优化 
+*/ 
 
 #include<stdio.h>
 #include<string.h>
@@ -17,6 +20,8 @@ using namespace std;
 int a[1000000 + 5] , b[1000000 + 5];
 int strt , over; 
 
+//程序中的cmp和move是用来得出每种排序方法的比较、移动次数 
+ 
 void PopSort(int *a , long n , long long &cmp , long long &move)
 {
 	int flag = 1;

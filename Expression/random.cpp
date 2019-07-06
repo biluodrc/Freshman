@@ -30,6 +30,25 @@ int main(void)
 		}
 	}
 	expr[len - 1] = '0' + (rand() % 10 );
+	int tem = len / 100;
+	for(int i = 0 ; i < tem ; i++)
+	{
+		int p1 = rand() % len,p2 = rand() % len;
+		if(p1 > p2)
+		{
+			int t = p1;
+			p1 = p2;
+			p2 = t;
+		}
+		for(int i = len - 1 ; i > p1 ; i--)
+			expr[i] = expr[i - 1];
+		expr[p1] = '(';
+		len++;
+		for(int i = len - 1 ; i > p2 ; i--)
+			expr[i] = expr[i - 1];
+		expr[p2] = ')';
+		len++;
+	 } 
 	for(int i = 0 ; i < len ; i++)
 	{
 		fprintf(fp , "%c" , expr[i]);

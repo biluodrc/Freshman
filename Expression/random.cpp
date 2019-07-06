@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<time.h>
+
+const int max = 1000 + 200;  //表达式的最大长度（可自己变化） 
+
+char expr[max - 200];  //最后生成200个括号，故只有max - 200个数字与符号
+char sample[4] = {'+' , '-' , '*' , '/'};  //加减乘除
+
+int main(void)
+{
+	FILE *fp = fopen("expr.in" , "w");
+
+	srand(time(0));
+	int len = rand() % (max - 200);  //获得一个随机的长度，即表达式中除去括号的长度
+	for(int i = 0 ; i < len - 1 ; i++)
+	{
+		int rd1 = rand() % 10;  //随机选择数字
+		int rd2 = rand() % 4;  //随机选择符号
+		if(i % 2 == 0)  //这里有一个非常关键的地方：被除数不能是0
+		{
+			expr[i] = rd1 + '0';
+			if(expr[i - 1] == '/')
+				expr[i] = '1'; 
+		} 
+		else 
+		{
+			expr[i] = sample[rd2];
+		}
+	}
+	expr[len - 1] = '0' + (rand() % 10 );
+	for(int i = 0 ; i < len ; i++)
+	{
+		fprintf(fp , "%c" , expr[i]);
+	}
+	fclose(fp);
+	return 0;
+ }

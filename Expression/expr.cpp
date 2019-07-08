@@ -7,13 +7,13 @@ using namespace std;
 char s[100000];  
 char back[100000];  
 
-int pre(char sam)
+int pre(char sym)
 {
-	if(sam == '(')
+	if(sym == '(')
 		return 1;
-	else if(sam == '+' || sam == '-')
+	else if(sym == '+' || sym == '-')
 		return 2;
-	else if(sam == '*' || sam == '/')
+	else if(sym == '*' || sym == '/')
 		return 3;
 	else
 		return 4;
@@ -21,7 +21,7 @@ int pre(char sam)
 
 int main(void)
 {
-	stack<char> sam;
+	stack<char> sym;
 	FILE *fp = fopen("expr.in" , "r");
 	int cnt = 0;  
 	int p = 0;  
@@ -37,51 +37,51 @@ int main(void)
 		}
 		else if(s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || s[i] == '(' || s[i] == ')')  //防止输入的不合法 
 		{
-			if(sam.empty())
+			if(sym.empty())
 			{
-				sam.push(s[i]);
+				sym.push(s[i]);
 			}
 			else if(s[i] == ')')
 			{
 				while(1)
 				{
-					char tem = sam.top();
-					sam.pop();
+					char tem = sym.top();
+					sym.pop();
 					if(tem == '(')
 						break;
 					back[p++] = tem;
 				}
 			}
 			else if(s[i] == '(')
-				sam.push(s[i]);
+				sym.push(s[i]);
 			else
 			{
 				while(1)
 				{
-					if(sam.empty())
+					if(sym.empty())
 					{
-						sam.push(s[i]);
+						sym.push(s[i]);
 						break;
 					}
-					char top = sam.top();
+					char top = sym.top();
 					if(pre(top) >= pre(s[i]))
 					{
 						back[p++] = top;
-						sam.pop();
+						sym.pop();
 					}
 					else
 					{
-						sam.push(s[i]);
+						sym.push(s[i]);
 						break;
 					}
 				}
 			}
 		}
 	}
-	while(!sam.empty())
+	while(!sym.empty())
 	{
-		back[p++] = sam.top();
-		sam.pop();
+		back[p++] = sym.top();
+		sym.pop();
 	}
 //	for(int i = 0 ; i < p ; i++)  //测试后缀表达式是否完成 
 //		printf("%c" , back[i]);

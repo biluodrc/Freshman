@@ -307,7 +307,7 @@ void EdgeValue(void)
 
 void BuildGraph(void)
 {
-	FILE *fp = fopen("test.txt" , "r");
+	FILE *fp = fopen("Graph.txt" , "r");
 	int m , n;
 	fscanf(fp , "%d%d" , &m , &n);
 	head_sum = m;

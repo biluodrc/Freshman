@@ -7,7 +7,7 @@ private:
 	int max_size;
 	int head,tail;
 public:
-	queue(void)
+	queue(void)  //建立队列
 	{
 		cout << "请确定队列大小："; 
 		cin >> max_size;
@@ -15,7 +15,7 @@ public:
 		head = tail = 0;
 		cout << "创建成功\n";
 	}
-	void Insert(void)
+	void Insert(void)  //入队 
 	{
 		cout << "****入队（以-1结束）****\n";
 		T tem;
@@ -41,7 +41,7 @@ public:
 		}
 		cout << "入队结束\n";
 	}
-	void DelFirstEle(void)
+	void DelFirstEle(void)  //弹栈
 	{
 		if(tail <= 0)
 		{
@@ -53,7 +53,7 @@ public:
 		tail--;
 		cout << "删除成功\n";
 	}
-	void ReturnFirstEle(void)
+	void ReturnFirstEle(void)  //返回队首元素
 	{
 		if(tail == 0)
 		{

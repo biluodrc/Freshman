@@ -94,7 +94,7 @@ int main(void)
 			num.push(back[i] - '0');
 		else
 		{
-			int b = num.top();  //注意这里用的是 b a而不是 a b 
+			int b = num.top();  //注意这里用的是b a而不是 a b 
 			num.pop();
 			int a = num.top();
 			num.pop();
